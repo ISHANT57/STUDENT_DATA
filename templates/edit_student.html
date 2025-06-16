@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Student - Student Status Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary me-3">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="h2 mb-0">
+                <i class="fas fa-user-edit me-2"></i>
+                Edit Student Record
+            </h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-form me-2"></i>
+                    Update Student Information
+                </h5>
+                <small class="text-muted">Student ID: #{{ student.id }}</small>
+            </div>
+            <div class="card-body">
+                <form method="POST" novalidate>
+                    <div class="row g-3">
+                        <!-- Student Name -->
+                        <div class="col-md-6">
+                            <label for="student_name" class="form-label">
+                                <i class="fas fa-user me-1"></i>
+                                Student Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="student_name" 
+                                   name="student_name" 
+                                   value="{{ student.student_name }}"
+                                   required
+                                   placeholder="Enter full name">
+                            <div class="invalid-feedback">
+                                Please provide a valid student name.
+                            </div>
+                        </div>
+
+                        <!-- Batch Year -->
+                        <div class="col-md-6">
+                            <label for="batch_year" class="form-label">
+                                <i class="fas fa-calendar me-1"></i>
+                                Batch Year <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="batch_year" name="batch_year" required>
+                                <option value="">Select Batch Year</option>
+                                <option value="2023-24" {{ 'selected' if student.batch_year == '2023-24' }}>2023-24</option>
+                                <option value="2022-23" {{ 'selected' if student.batch_year == '2022-23' }}>2022-23</option>
+                                <option value="2024-25" {{ 'selected' if student.batch_year == '2024-25' }}>2024-25</option>
+                                <option value="2021-22" {{ 'selected' if student.batch_year == '2021-22' }}>2021-22</option>
+                                <option value="2020-21" {{ 'selected' if student.batch_year == '2020-21' }}>2020-21</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a batch year.
+                            </div>
+                        </div>
+
+                        <!-- Course/Program -->
+                        <div class="col-12">
+                            <label for="course_program" class="form-label">
+                                <i class="fas fa-book me-1"></i>
+                                Course/Program <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="course_program" 
+                                   name="course_program" 
+                                   value="{{ student.course_program }}"
+                                   required
+                                   placeholder="e.g., B.Tech Computer Science, MBA, BCA">
+                            <div class="invalid-feedback">
+                                Please provide the course/program information.
+                            </div>
+                        </div>
+
+                        <!-- College/University -->
+                        <div class="col-12">
+                            <label for="college_university" class="form-label">
+                                <i class="fas fa-university me-1"></i>
+                                College/University <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="college_university" 
+                                   name="college_university" 
+                                   value="{{ student.college_university }}"
+                                   required
+                                   placeholder="Enter college/university name with location">
+                            <div class="invalid-feedback">
+                                Please provide the college/university information.
+                            </div>
+                        </div>
+
+                        <!-- Current Status -->
+                        <div class="col-12">
+                            <label for="current_status" class="form-label">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Current Status <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="current_status" name="current_status" required>
+                                <option value="">Select Current Status</option>
+                                <option value="Currently Studying" {{ 'selected' if student.current_status == 'Currently Studying' }}>Currently Studying</option>
+                                <option value="Graduated" {{ 'selected' if student.current_status == 'Graduated' }}>Graduated</option>
+                                <option value="Employed" {{ 'selected' if student.current_status == 'Employed' }}>Employed</option>
+                                <option value="Job Seeking" {{ 'selected' if student.current_status == 'Job Seeking' }}>Job Seeking</option>
+                                <option value="Higher Studies" {{ 'selected' if student.current_status == 'Higher Studies' }}>Higher Studies</option>
+                                <option value="Internship" {{ 'selected' if student.current_status == 'Internship' }}>Internship</option>
+                                <option value="Entrepreneur" {{ 'selected' if student.current_status == 'Entrepreneur' }}>Entrepreneur</option>
+                                <option value="Other" {{ 'selected' if student.current_status == 'Other' }}>Other</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select the current status.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Update Student
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Record History -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <i class="fas fa-calendar-plus text-success"></i>
+                        </div>
+                        <h6 class="mb-1">Created</h6>
+                        <small class="text-muted">{{ student.created_at.strftime('%B %d, %Y at %I:%M %p') }}</small>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <i class="fas fa-calendar-check text-info"></i>
+                        </div>
+                        <h6 class="mb-1">Last Updated</h6>
+                        <small class="text-muted">{{ student.updated_at.strftime('%B %d, %Y at %I:%M %p') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Text -->
+        <div class="alert alert-info mt-3">
+            <i class="fas fa-lightbulb me-2"></i>
+            <strong>Tip:</strong> All fields marked with <span class="text-danger">*</span> are required. 
+            Changes will be automatically timestamped when you save the record.
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Client-side form validation
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByTagName('form');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
+// Auto-focus first input field
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('student_name').focus();
+});
+</script>
+{% endblock %}

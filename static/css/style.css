@@ -1,0 +1,167 @@
+/* Custom styles for Student Status Tracking System */
+
+/* Smooth transitions for interactive elements */
+.btn, .card, .table-hover tbody tr {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Enhanced card hover effect */
+.card {
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Table enhancements */
+.table-hover tbody tr:hover {
+    background-color: var(--bs-secondary-bg);
+    transform: scale(1.001);
+}
+
+/* Form styling improvements */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.875em;
+    padding: 0.5em 0.75em;
+}
+
+/* Alert improvements */
+.alert {
+    border: none;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    border-left-color: var(--bs-success);
+}
+
+.alert-danger {
+    border-left-color: var(--bs-danger);
+}
+
+.alert-warning {
+    border-left-color: var(--bs-warning);
+}
+
+.alert-info {
+    border-left-color: var(--bs-info);
+}
+
+/* Navigation active state */
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.375rem;
+}
+
+/* Button group styling */
+.btn-group .btn {
+    border-color: var(--bs-border-color);
+}
+
+/* Modal enhancements */
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Empty state styling */
+.text-center.py-5 {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+}
+
+/* Responsive table improvements */
+@media (max-width: 768px) {
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Card body improvements for mobile */
+@media (max-width: 576px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Form validation styles */
+.was-validated .form-control:valid,
+.was-validated .form-select:valid {
+    border-color: var(--bs-success);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.94-.94 1.93 1.93 3.51-3.51.94.94L4.17 9.49z'/%3e%3c/svg%3e");
+}
+
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid {
+    border-color: var(--bs-danger);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.6 1.4 1.4M7.2 4.6 5.8 6'/%3e%3c/svg%3e");
+}
+
+/* Loading states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus outline improvements */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .btn,
+    .alert,
+    footer {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: none !important;
+    }
+    
+    .table {
+        font-size: 0.8rem;
+    }
+}
